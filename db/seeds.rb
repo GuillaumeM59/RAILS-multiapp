@@ -15,28 +15,32 @@ User.create!(username: 'admin', email: 'admin@admin.com', password:"12345678", p
 Product.delete_all
 Brand.delete_all
 10.times do |t|
+  bdimage_src= File.join("public/default_pics/marques/#{t+1}.jpeg")
+  bdsrc_file= File.new(bdimage_src)
 Brand.create!(
       name: "MARQUE #{t+1}",
       address: "Adresse #{t+1}",
       place: "Ville #{t+1}",
-      logo: "MARQUE #{t+1}",
-      logo_cache: "MARQUE #{t+1}")
+      logo: bdsrc_file)
 
 brand_id= Brand.where(name:"MARQUE #{t+1}").first.id
 
 
   150.times do |i|
-    Product.create!(
-    name: "PRODUIT GENIAL #{i+1}",
-    content: "Le produit génial #{i+1} est une produit super génial !!!",
-    brand_id: brand_id,
-    quantity: rand(1..300),
-    price: rand(20..200).to_s,
-    visuel: "MARQUE #{t+1}",
-    visuel_cache: "MARQUE #{t+1}")
+      aleat= rand(1..8)
+      pdimage_src= File.join("public/default_pics/produits/#{aleat}.jpeg")
+      pdsrc_file= File.new(pdimage_src)
+      Product.create!(
+      name: "PRODUIT GENIAL #{i+1}",
+      content: "Le produit génial #{i+1} est une produit super génial !!!",
+      brand_id: brand_id,
+      quantity: rand(1..300),
+      price: rand(20..200).to_s,
+      visuel: pdsrc_file)
 
+    end
   end
-end
+
 
 
 # # Use these variable to  populate text zones

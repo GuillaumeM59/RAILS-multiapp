@@ -24,6 +24,17 @@
     <%= f.text_field :place %>
   </div>
   <div class="field">
+    <%= f.label :logo %><br />
+    <%if @brand.logo.present?%>
+    <% image_tag(@brand.logo) %>
+    <% f.label :remove_logo %>
+    <% f.check_box :remove_logo %>
+    <%end%>
+    <%= f.file_field :logo %>
+    <%= f.hidden_field :logo_cache %>
+  </div>
+
+  <div class="field">
     <%= f.label :logo %><br>
     <%= f.text_field :logo %>
   </div>

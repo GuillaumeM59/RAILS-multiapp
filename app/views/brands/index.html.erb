@@ -19,15 +19,40 @@
         <td><%= brand.name %></td>
         <td><%= brand.address %></td>
         <td><%= brand.place %></td>
-        <td><%= brand.logo %></td>
+        <td><%= image_tag(brand.logo , size: "60") %></td>
         <td><%= link_to 'Show', brand %></td>
+        <%if current_user.admin%>
         <td><%= link_to 'Edit', edit_brand_path(brand) %></td>
         <td><%= link_to 'Destroy', brand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
       </tr>
+      <% Product.all.each do |product| %>
+      <% if brand.id == product.brand_id%>
+      <% r=rand(0..255).to_s%>
+      <% g=rand(0..255).to_s%>
+      <% b=rand(0..255).to_s%>
+      <%= content_tag(:tr, style:"background-color: rgba(#{r+","+g+","+b},0.5)") do %>
+
+          <td><%= product.name %></td>
+          <td><%= product.content %></td>
+          <td><%= product.brand_id %></td>
+          <td><%= product.quantity %></td>
+          <td><%= product.price %></td>
+          <td><%= link_to image_tag(product.visuel.thumb), image_path(product.visuel)%></td>
+          <td><%= link_to 'Show', product %></td>
+          <%if current_user.admin%>
+          <td><%= link_to 'Edit', edit_product_path(product) %></td>
+          <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%end%>
+        <%end%>
+      <% end %>
+      <% end %>
     <% end %>
   </tbody>
 </table>
 
 <br>
+<%if current_user.admin%>
 
 <%= link_to 'New Brand', new_brand_path %>
+<%end%>
