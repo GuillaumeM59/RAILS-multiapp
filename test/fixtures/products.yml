@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  content: MyText
+  brand_id: 1
+  quantity: 1
+  price: MyString
+  visuel: MyString
+  visuel_cache: MyString
+
+two:
+  name: MyString
+  content: MyText
+  brand_id: 1
+  quantity: 1
+  price: MyString
+  visuel: MyString
+  visuel_cache: MyString
