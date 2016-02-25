@@ -29,9 +29,10 @@ class BrandsController < ApplicationController
   # POST /brands.json
   def create
     if current_user.admin
+      @user=current_user
     @brand = Brand.new(brand_params)
-
     respond_to do |format|
+      UserMailer.welcome_email(@user).deliver_now
       if @brand.save
         format.html { redirect_to @brand, notice: 'Brand was successfully created.' }
         format.json { render :show, status: :created, location: @brand }
