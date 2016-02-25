@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PortFolio</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".nav_drop" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          NAVIGATION
+        </button>
+      <%= link_to 'Phonebook', root_path, class: "navbar-brand" %>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+
+        <div id="user_nav" id="navcollapse" class="navbar-right collapse navbar-collapse nav_drop">
+           <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+            <li class="status">Logged in as <strong><%=current_user.username%></strong></li> .
+            <li><%= link_to 'Edit profile', edit_user_registration_path %> </li>
+              <% if user_signed_in? && current_user.admin %>
+              <li><%= link_to 'Manage contacts', contacts_path %></li>
+              <% end %>
+            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+            <% else %>
+            <li><%= link_to 'Sign up', new_user_registration_path %></li>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+            <% end %>
+          </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+<div class="message"> <%= flash_messages %></div>
+
+<%= yield %>
+
+</body>
+</html>
