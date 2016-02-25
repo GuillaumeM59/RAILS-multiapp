@@ -9,40 +9,41 @@
 
 # Do NOT forget to avoid doublons when recreating entries (here with 'delete_all' method)
 User.delete_all
-User.create!(username: 'admin', email: 'admin@admin.com', password:"12345678", password_confirmation:"12345678", admin:true)
+Contact.delete_all
+User.create!(username: "admin", email: 'admin@admin.com', password:"12345678", password_confirmation:"12345678", admin:true)
+adminid=User.where(username:"admin").first.id
+10.times do |u|
+  if u == 0
+    10.times do |c|
+        Contact.create!(
+        username: "toto#{c+1}",
+        gender: rand(0..1),
+        email: "toto#{adminid}#{c+1}@toto.com",
+        tel: "060101#{rand(1000..9999)}",
+        address: "#{adminid}#{c+1} rue toto",
+        citycode: "59100",
+        city: "ROUBAIX",
+        user_id: adminid
+        )
+      end
 
-
-Product.delete_all
-Brand.delete_all
-10.times do |t|
-  bdimage_src= File.join("public/default_pics/marques/#{t+1}.jpeg")
-  bdsrc_file= File.new(bdimage_src)
-Brand.create!(
-      name: "MARQUE #{t+1}",
-      address: "Adresse #{t+1}",
-      place: "Ville #{t+1}",
-      logo: bdsrc_file)
-
-brand_id= Brand.where(name:"MARQUE #{t+1}").first.id
-
-
-  150.times do |i|
-      aleat= rand(1..8)
-      pdimage_src= File.join("public/default_pics/produits/#{aleat}.jpeg")
-      pdsrc_file= File.new(pdimage_src)
-      Product.create!(
-      name: "PRODUIT GENIAL #{i+1}",
-      content: "Le produit génial #{i+1} est une produit super génial !!!",
-      brand_id: brand_id,
-      quantity: rand(1..300),
-      price: rand(20..200).to_s,
-      visuel: pdsrc_file)
-
+    else
+      User.create!(username: "toto#{u}", email: "toto#{u}@admin.com", password:"12345678", password_confirmation:"12345678")
+      userid=User.where(username:"toto#{u}").first.id
+      10.times do |c|
+          Contact.create!(
+          username: "toto#{c+1}",
+          gender: rand(0..1),
+          email: "toto#{adminid}#{c+1}@toto.com",
+          tel: "060101#{rand(1000..9999)}",
+          address: "#{adminid}#{c+1} rue toto",
+          citycode: "59100",
+          city: "ROUBAIX",
+          user_id: userid
+          )
     end
-  end
-
-
-
+    end
+end
 # # Use these variable to  populate text zones
 # text1 = "Donec commodo lacus arcu, vitae iaculis nisi pharetra accumsan. Phasellus nibh ligula, efficitur non metus sit amet, accumsan condimentum magna. Ut non cursus purus. Vestibulum eu lobortis enim. Vivamus mattis dictum tellus et tempus. Maecenas massa nunc, varius at risus eget, euismod varius ipsum. Nam accumsan, est sit amet interdum ultricies, tellus erat semper orci, in posuere urna dolor vitae erat. Aenean vel faucibus tortor. Morbi semper vulputate tortor, nec vulputate leo mollis quis. Vestibulum sit amet tincidunt risus. Vivamus purus nisl, porttitor eget tempor a, gravida eget eros. Fusce eget augue finibus, tincidunt nulla eu, rutrum sapien. Mauris sed semper orci."
 

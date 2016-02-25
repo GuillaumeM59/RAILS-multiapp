@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # For secure login and registration administartion
 gem 'devise'
 # Uploader
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'carrierwave'
 # Fancy form
 gem 'bootstrap_form'
 # Css & Js library
@@ -36,12 +36,12 @@ gem 'bootstrap-sass'
 gem 'mailcatcher'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+#speed jQuery search
+gem 'jquery-datatables-rails', '~> 3.3.0'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
-
-gem "mini_magick"
-
-
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

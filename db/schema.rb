@@ -11,42 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224105659) do
+ActiveRecord::Schema.define(version: 20160225101232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "brands", force: :cascade do |t|
-    t.string   "name"
+  create_table "contacts", force: :cascade do |t|
+    t.string   "username"
+    t.integer  "gender"
+    t.string   "email"
+    t.string   "tel"
     t.string   "address"
-    t.string   "place"
-    t.string   "logo"
-    t.string   "logo_cache"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "products", force: :cascade do |t|
-    t.string   "name"
-    t.text     "content"
-    t.integer  "brand_id"
-    t.integer  "quantity"
-    t.string   "price"
-    t.string   "visuel"
-    t.string   "visuel_cache"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "tasks", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
-    t.string   "place"
-    t.integer  "user_id"
-    t.datetime "deadline"
-    t.boolean  "private"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "citycode"
+    t.boolean  "subscribe",  default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "user_id"
+    t.string   "city"
   end
 
   create_table "users", force: :cascade do |t|
