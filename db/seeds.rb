@@ -9,7 +9,16 @@
 
 # Do NOT forget to avoid doublons when recreating entries (here with 'delete_all' method)
 User.delete_all
-User.create!(username: 'admin', email: 'admin@admin.com', password:"12345678", password_confirmation:"12345678", admin:true)
+User.create!(username: 'admin', email: 'admin@admin.com', password:"12345678", password_confirmation:"12345678", admin:true, subscribe:true)
+9.times do |t|
+  g=rand(1..2)
+  if g==1
+    g=true
+  else
+    g==false
+  end
+User.create!(username: "toto#{t+1}", email: "toto#{t+1}@g.com", password:"12345678", password_confirmation:"12345678", subscribe:g)
+end
 
 
 Product.delete_all
@@ -26,7 +35,7 @@ Brand.create!(
 brand_id= Brand.where(name:"MARQUE #{t+1}").first.id
 
 
-  150.times do |i|
+  20.times do |i|
       aleat= rand(1..8)
       pdimage_src= File.join("public/default_pics/produits/#{aleat}.jpeg")
       pdsrc_file= File.new(pdimage_src)

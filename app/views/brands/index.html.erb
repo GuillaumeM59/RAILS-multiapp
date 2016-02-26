@@ -9,7 +9,7 @@
       <th>Address</th>
       <th>Place</th>
       <th>Logo</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -39,6 +39,7 @@
           <td><%= product.quantity %></td>
           <td><%= product.price %></td>
           <td><%= link_to image_tag(product.visuel.thumb), image_path(product.visuel)%></td>
+          <td><%= link_to 'like', chglike_path(user_id: current_user.id, product_id: product.id), remote: true %></td>
           <td><%= link_to 'Show', product %></td>
           <%if current_user.admin%>
           <td><%= link_to 'Edit', edit_product_path(product) %></td>
