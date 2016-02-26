@@ -5,6 +5,9 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     @contacts = Contact.all
+    if current_user.sign_in_count == 1
+      UserMailer.welcome_email(current_user).deliver_now
+    end
   end
 
   # GET /contacts/1
@@ -59,6 +62,12 @@ class ContactsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to contacts_url, notice: 'Contact was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def sendnewsletter
+    Contact.where(subscribe:true).each do |user|
+      UserMailer.newsletter_email(user).deliver_now
     end
   end
 

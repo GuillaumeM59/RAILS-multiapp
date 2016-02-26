@@ -19,4 +19,4 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-$('.datatable').DataTable();
+$('#contacts').DataTable();
