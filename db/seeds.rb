@@ -28,7 +28,13 @@ adminid=User.where(username:"admin").first.id
       end
 
     else
-      User.create!(username: "toto#{u}", email: "toto#{u}@admin.com", password:"12345678", password_confirmation:"12345678")
+      g=rand(1..2)
+      if g==1
+        g=true
+      else
+        g=false
+      end
+      User.create!(username: "toto#{u}", email: "toto#{u}@admin.com", password:"12345678", password_confirmation:"12345678", subscribe: g)
       userid=User.where(username:"toto#{u}").first.id
       10.times do |c|
           Contact.create!(
